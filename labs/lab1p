@@ -1,0 +1,15 @@
+from math import sin
+from math import atanh
+
+print('Enter X:')
+x = float(input())
+print('Enter A:')
+a = float(input())
+
+G = 5 * (-2 * a * a + a * x + 3 * x * x) / (10 * a * a + 11 * a * x + 3 * x * x)
+F = sin(10 * a * a - 7 * a * x + x * x)
+Y = atanh(45 * a * a - 79 * a * x + 30 * x * x)
+
+print('G = ' + str(G))
+print('F = ' + str(F))
+print('Y = ' + str(Y))
