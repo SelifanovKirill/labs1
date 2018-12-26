@@ -1,0 +1,72 @@
+from math import sin
+from math import atanh
+
+
+start_f = float
+end_f = float
+work_pr = int(1)
+massiv = []
+
+while work_pr == 1:
+    print('Enter start X:')
+    sx = float(input())
+    print('Enter end X:')
+    ex = float(input())
+    print('Enter A:')
+    a = float(input())
+    print('Enter step:')
+    step = float(input())
+    print('Enter function(G-1,F-2,Y-3):')
+    Function = int(input())
+
+    i_massiv = 0
+    x = sx
+
+    if Function == 1:
+        while x <= ex:
+            if (10 * a * a + 11 * a * x + 3 * x * x) != 0:
+                G = 5 * (-2 * a * a + a * x + 3 * x * x) / (10 * a * a + 11 * a * x + 3 * x * x)
+                massiv.append(G)
+            else:
+                print('Error(1)')
+            x += step
+
+    elif Function == 2:
+        while x <= ex:
+            F = sin(10 * a * a - 7 * a * x + x * x)
+            massiv.append(F)
+            x += step
+
+    elif Function == 3:
+        while x <= ex:
+            if abs(45 * a * a - 79 * a * x + 30 * x * x) <= 1:
+                Y = atanh(45 * a * a - 79 * a * x + 30 * x * x)
+                massiv.append(Y)
+            else:
+                print('Error(3)')
+            x += step
+
+    else:
+        print('Error(0)')
+
+    minmas = massiv[i_massiv]
+    maxmas = massiv[i_massiv]
+
+    print('╔═════════╦═════════╦═════════╗')
+    print('║    X    ║    A    ║    ' + str(Function) + '    ║')
+    print('╠═════════╬═════════╬═════════╣')
+    x = sx
+
+    while x <= ex:
+        print('║{:^9}'.format(x) + '║{:^9}'.format(a) + '║{:^9}'.format(round(massiv[i_massiv], 5)) + '║')
+        x += step
+        i_massiv += 1
+    print('╚═════════╩═════════╩═════════╝')
+    print('Max = ' + str(max(massiv)) + ', Min = ' + str(min(massiv)))
+
+    print ('We work on?\n   (1 - yes; 0 - no)')
+    work_pr = int(input())
+    if work_pr == 1:
+        continue
+    else:
+        break
