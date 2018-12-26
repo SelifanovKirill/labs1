@@ -4,7 +4,7 @@
 int main()
 {
     double x, a, G, F, Y;
-    char Function;
+    int Function;
 
     printf("Х:");
     scanf("%lf", &x);
