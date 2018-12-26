@@ -1,0 +1,30 @@
+from math import sin
+from math import atanh
+
+print('Enter X:')
+x = float(input())
+print('Enter A:')
+a = float(input())
+print('Enter function(G-1,F-2,Y-3):')
+Function = int(input())
+
+if Function == 1:
+    if (10 * a * a + 11 * a * x + 3 * x * x) != 0:
+        G = 5 * (-2 * a * a + a * x + 3 * x * x) / (10 * a * a + 11 * a * x + 3 * x * x)
+        print('G = ' + str(G))
+    else:
+        print('Error(1)')
+
+elif Function == 2:
+    F = sin(10 * a * a - 7 * a * x + x * x)
+    print('F = ' + str(F))
+
+elif Function == 3:
+    if abs(45 * a * a - 79 * a * x + 30 * x * x) <= 1:
+        Y = atanh(45 * a * a - 79 * a * x + 30 * x * x)
+        print('Y = ' + str(Y))
+    else:
+        print('Error(3)')
+
+else:
+    print('Error(0)')
