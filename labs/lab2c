@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+    double x, a, G, F, Y;
+    char Function;
+
+    printf("Х:");
+    scanf("%lf", &x);
+    printf("A:");
+    scanf("%lf", &a);
+    Func:
+    printf("Введите название функции(G-1, F-2, Y-3):\n");
+    scanf("%i", &Function);
+
+    switch (Function) {
+        case 1:
+            if (fabs(10 * a * a + 11 * a * x + 3 * x * x) >= 0.0001)
+            {
+                G = 5 * (-2 * a * a + a * x + 3 * x * x) / (10 * a * a + 11 * a * x + 3 * x * x);
+                printf("G = %lf\n", G);
+            }
+            else
+                printf("Нельзя вычислить.\n");
+            break;
+        case 2:
+            F = sin(10 * a * a - 7 * a * x + x * x);
+            printf("F = %lf\n", F);
+            break;
+        case 3:
+            if (fabs(45 * a * a - 79 * a * x + 30 * x * x) <= 1)
+            {
+                Y = atanh(45 * a * a - 79 * a * x + 30 * x * x);
+                printf("Y = %lf\n", Y);
+            }
+            else
+                printf("Нельзя вычислить.\n");
+            break;
+        default:
+            printf("Неправильно выбрана функция.\n");
+            goto Func;
+    }
+    return 0;
+};
