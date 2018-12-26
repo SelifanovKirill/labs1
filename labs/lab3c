@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main() {
+    double sx, ex, x, a, G, F, Y, step, start_result, end_result;
+    char off;
+    int Function;
+    for (;;) { /*start*/
+        printf("Введите начальное значение Х:");
+        scanf("%lf", &sx);
+        printf("Введите конечное значение Х:");
+        scanf("%lf", &ex);
+        printf("Введите значение A:");
+        scanf("%lf", &a);
+        printf("Введите размер шага:");
+        scanf("%lf", &step);
+        for(;;) {
+            printf("Введите название функции(G-1, F-2, Y-3):\n");
+            scanf("%i", &Function);
+
+            switch (Function) {
+                case 1:
+                    start_result = 5 * (-2 * a * a + a * (sx - 1) + 3 * (sx - 1) * (sx - 1)) / (10 * a * a + 11 * a * (sx - 1) + 3 * (sx - 1) * (sx - 1));
+                    for (x = sx; x <= ex; x += step)
+                        if (fabs(10 * a * a + 11 * a * x + 3 * x * x) >= 0.0001) {
+                            G = 5 * (-2 * a * a + a * x + 3 * x * x) / (10 * a * a + 11 * a * x + 3 * x * x);
+                            printf("При Х = %lf, A = %lf, G = %lf (step = %lf)\n", x, a, G, step);
+                            end_result = G;
+                            if ((fabs(end_result - start_result) >= 1) && (step >= 0.1))
+                                step = step / 2;
+                            if ((fabs(end_result - start_result) <= 0.3) && (step <= 2))
+                                step = step * 2;
+                            start_result = G;
+                        } else
+                            printf("При X = %lf, A = %lf, функцию вычислить невозможно.\n", x, a);
+                    break;
+                case 2:
+                    start_result = sin(10 * a * a - 7 * a * (sx - 1) + (sx - 1) * (sx - 1));
+                    for (x = sx; x <= ex; x += step) {
+                          F = sin(10 * a * a - 7 * a * x + x * x);
+                          printf("При Х = %lf, A = %lf, F = %lf (step = %lf)\n", x, a, F, step);
+                          end_result = F;
+                          if ((fabs(end_result - start_result) >= 1) && (step >= 0.1))
+                              step = step / 2;
+                          if ((fabs(end_result - start_result) <= 0.3) && (step <= 2))
+                              step = step * 2;
+                          start_result = F;         
+                    }               
+                    break;
+                case 3:
+                    start_result = atanh(45 * a * a - 79 * a * (sx - 1) + 30 * (sx - 1) * (sx - 1));
+                    for (x = sx; x <= ex; x += step)
+                        if (fabs(45 * a * a - 79 * a * x + 30 * x * x) <= 1) {
+                            Y = atanh(45 * a * a - 79 * a * x + 30 * x * x);
+                            printf("При Х = %lf, A = %lf, Y = %lf (step = %lf)\n", x, a, Y, step);
+                            end_result = Y;
+                            if ((fabs(end_result - start_result) >= 1) && (step >= 0.1))
+                                step = step / 2;
+                            if ((fabs(end_result - start_result) <= 0.3) && (step <= 2))
+                                step = step * 2;
+                            start_result = Y;
+                        } else
+                            printf("При X = %lf, A = %lf, функцию вычислить невозможно.\n", x, a);
+                    break;
+                default:
+                    printf("Неправильно выбрана функция.");
+                    continue;
+            }
+            break;
+        }
+        for(;;) { /*off*/
+            printf("Продолжить работу программы?(y/n)\n");
+            scanf("%s", &off);
+            switch (off) {
+                case 'y':
+                    break;
+                case 'n':
+                    exit(0);
+                default:
+                    printf("Неправильно введен ответ.");
+                    continue;
+            }
+            break;
+        }
+    }
+}
